@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "categoryId": 1001,
+            "categoryName": "Analyze Images",
+            "icon": "restaurant",
+            "routePath": "analyze",
+            "active": true,
+            "itemsList": [
+                {
+                    "itemId": 1011,
+                    "itemName": "PCA"
+                }
+            ]
+        },
+        {
+            "categoryId": 2001,
+            "categoryName": "Diagnose Images",
+            "icon": "restaurant",
+            "routePath": "diagnose",
+            "active": true,
+            "itemsList": [
+                {
+                    "itemId": 2011,
+                    "itemName": "Diabetic Retinopathy"
+                },
+                {
+                    "itemId": 2012,
+                    "itemName": "Pneumothorax"
+                }
+            ]
+        }
+    ]
+}

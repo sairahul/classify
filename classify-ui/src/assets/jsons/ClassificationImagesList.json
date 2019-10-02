@@ -1,0 +1,243 @@
+{
+    "data": [
+        {
+            "imageId": 36444280,
+            "imageURL": "https://picsum.photos/500/300?image=10",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444294,
+            "imageURL": "https://picsum.photos/500/300?image=20",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444308,
+            "imageURL": "https://picsum.photos/500/300?image=30",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444322,
+            "imageURL": "https://picsum.photos/500/300?image=40",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444336,
+            "imageURL": "https://picsum.photos/500/300?image=50",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444350,
+            "imageURL": "https://picsum.photos/500/300?image=60",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444364,
+            "imageURL": "https://picsum.photos/500/300?image=70",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444378,
+            "imageURL": "https://picsum.photos/500/300?image=80",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444392,
+            "imageURL": "https://picsum.photos/500/300?image=90",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444406,
+            "imageURL": "https://picsum.photos/500/300?image=100",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444420,
+            "imageURL": "https://picsum.photos/500/300?image=1",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444434,
+            "imageURL": "https://picsum.photos/500/300?image=2",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444448,
+            "imageURL": "https://picsum.photos/500/300?image=3",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444462,
+            "imageURL": "https://picsum.photos/500/300?image=4",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444476,
+            "imageURL": "https://picsum.photos/500/300?image=5",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444490,
+            "imageURL": "https://picsum.photos/500/300?image=6",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        },{
+            "imageId": 36444504,
+            "imageURL": "https://picsum.photos/500/300?image=7",
+            "meta": {
+                "classificationId": 5001,
+                "classificationName": "pneumothorax - positive"
+            },
+            "patientInfo": {
+                "name": "John Doe",
+                "age": "28 Years",
+                "dateOfBirth": "19/10/1991",
+                "gender": "Male",
+                "bloodType": "O+"
+            }
+        }
+    ]
+}

@@ -1,0 +1,80 @@
+version: '3.3'
+services:
+  backend:
+    build:
+      context: ./classify-backend
+      dockerfile: backend.dockerfile
+      args:
+        env: dev
+    volumes:
+      - /data/classify_data:/app
+    networks:
+      default:
+        aliases:
+          - ${DOMAIN}
+    command: /start-reload.sh
+    ports:
+      - '8888:8888'
+#    labels:
+#      - traefik.frontend.rule=PathPrefix:/api,/docs,/redoc
+#      - traefik.enable=true
+#      - traefik.port=80
+#      - traefik.tags=${TRAEFIK_TAG}
+    environment:
+#      - JUPYTER=jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
+      - SERVER_HOST=http://${DOMAIN}
+      - SERVER_NAME=${DOMAIN}
+    env_file:
+      - env-backend.env
+#      - env-postgres.env
+
+  frontend:
+    build:
+      context: ./classify-ui
+      args:
+        FRONTEND_ENV: dev
+
+    labels:
+      - traefik.frontend.rule=PathPrefix:/
+      - traefik.enable=true
+      - traefik.port=80
+      - traefik.tags=${TRAEFIK_TAG}
+
+  celeryworker:
+    build:
+      context: ./classify-backend
+      dockerfile: celeryworker.dockerfile
+      args:
+        env: dev
+    volumes:
+      - ./data/classify_data:/app
+    environment:
+      - RUN=celery worker -A app.worker -l info -Q main-queue -c 1
+#      - JUPYTER=jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
+      - SERVER_HOST=http://${DOMAIN}
+    env_file:
+#      - env-postgres.env
+      - env-backend.env
+  proxy:
+    image: traefik:v1.7
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --docker \
+      --docker.watch \
+      --docker.exposedbydefault=false \
+      --constraints=tag==${TRAEFIK_TAG} \
+      --logLevel=DEBUG \
+      --accessLog \
+      --web
+    ports:
+      - '80:80'
+      - '8090:8080'
+
+  queue:
+    image: rabbitmq:3
+
+  flower:
+    image: totem/celery-flower-docker
+    env_file:
+      - env-flower.env
+

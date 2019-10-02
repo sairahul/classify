@@ -1,0 +1,23 @@
+{
+    "data": [
+        {
+            "text": "Pneumothorax Dataset 1",
+            "value": 50001 
+        },{
+            "text": "Diabetic Dataset 1",
+            "value": 50002 
+        },{
+            "text": "Classification 3",
+            "value": 50003 
+        },{
+            "text": "Classification 4",
+            "value": 50004 
+        },{
+            "text": "Classification 5",
+            "value": 50005 
+        },{
+            "text": "Classification 6",
+            "value": 50006 
+        }
+    ]
+}
