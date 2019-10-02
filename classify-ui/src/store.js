@@ -10,7 +10,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    BASE_URL: 'http://148.251.87.118:8000'
+    BASE_URL: ''
     , navigationTreeList: NavigationTreeList.data
     , classificationList: []
     , classificationModelsList: []

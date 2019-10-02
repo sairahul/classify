@@ -7,19 +7,20 @@ services:
       args:
         env: dev
     volumes:
-      - /data/classify_data:/app
+      - /data/classify_data:/data
     networks:
       default:
         aliases:
           - ${DOMAIN}
-    command: /start-reload.sh
+#    command: /start-reload.sh
     ports:
-      - '8888:8888'
-#    labels:
-#      - traefik.frontend.rule=PathPrefix:/api,/docs,/redoc
-#      - traefik.enable=true
-#      - traefik.port=80
-#      - traefik.tags=${TRAEFIK_TAG}
+    - published: 8888
+      target: 8888
+    labels:
+      - traefik.frontend.rule=PathPrefix:/api,/docs,/redoc,/static
+      - traefik.enable=true
+      - traefik.port=80
+      - traefik.tags=${TRAEFIK_TAG}
     environment:
 #      - JUPYTER=jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
       - SERVER_HOST=http://${DOMAIN}
@@ -73,8 +74,8 @@ services:
   queue:
     image: rabbitmq:3
 
-  flower:
-    image: totem/celery-flower-docker
-    env_file:
-      - env-flower.env
+#  flower:
+#    image: totem/celery-flower-docker
+#    env_file:
+#      - env-flower.env
 
