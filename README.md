@@ -14,12 +14,16 @@ We can apply different filters while analyzing the image like rotating, invertin
 
 It is still work in progress. I am working on to bring up the tool without any manual steps.
 
-# References
+# requirements.txt
 
 * [Kaggle Pneumothorax Segmentation](https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation)
 * [fast.ai](http://fast.ai)
 * [Fastapi](https://github.com/tiangolo/fastapi)
 * [Fastapi base project generator](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+* [Pytorch](https://pytorch.org/)
+
+# References
+
 * [resnet34 model](https://github.com/sairahul/notebooks/blob/master/Siamese_Network_with_ContrastiveLoss.ipynb)
 
 
