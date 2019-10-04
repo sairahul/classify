@@ -16,11 +16,15 @@ It is still work in progress. I am working on to bring up the tool without any m
 
 # requirements.txt
 
+This project is not possible without opensource software. Following are mainly used components.
+
 * [Kaggle Pneumothorax Segmentation](https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation)
 * [fast.ai](http://fast.ai)
 * [Fastapi](https://github.com/tiangolo/fastapi)
 * [Fastapi base project generator](https://github.com/tiangolo/full-stack-fastapi-postgresql)
 * [Pytorch](https://pytorch.org/)
+* [https://vuejs.org/](https://vuejs.org/)
+* [faiss](https://github.com/facebookresearch/faiss)
 
 # References
 
@@ -29,5 +33,5 @@ It is still work in progress. I am working on to bring up the tool without any m
 
 # Demo
 
-http://148.251.87.118:8080
+https://demo.classify.dev
 
