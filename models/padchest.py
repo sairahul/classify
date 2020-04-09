@@ -60,7 +60,8 @@ class ImageListDataset(Dataset):
         lbl = self.mapping[self.image_list[idx]]
         return {
             'image': self.transforms(image=open_image_png16(self.base_folder/self.image_list[idx]))['image'],
-            'label': lbl
+            'disease': lbl[0],
+            'gender': lbl[1],
         }
 
 class ChestXRayDiagnosis(pl.LightningModule):
@@ -90,10 +91,11 @@ class ChestXRayDiagnosis(pl.LightningModule):
         self.disease_labels = {}
         for i, row in df_clean.iterrows():
             lbls = set(eval(row.Labels))
+            gender = np.array([0 if row.PatientSex_DICOM == 'F' else 1])
             if lbls.intersection(diagnosis):
-                self.disease_labels[row.ImageID] = np.array([1])
+                self.disease_labels[row.ImageID] = [np.array([1]), gender]
             elif len(lbls) == 1 and 'normal' in lbls:
-                self.disease_labels[row.ImageID] = np.array([0])
+                self.disease_labels[row.ImageID] = [np.array([0]), gender]
             else:
                 pass
 
@@ -129,36 +131,61 @@ class ChestXRayDiagnosis(pl.LightningModule):
                 model.freeze_to(0)
                 self.trainer.lr_schedulers[0]['scheduler'] = self.create_lr_scheduler(self.params['stages'][2], self.trainer.optimizers[0])
 
-        x, y = batch['image'], batch['label']
-        y_hat = self.forward(x)
+        x = batch['image']
+        y_disease = batch['disease']
+        y_gender = batch['gender']
 
-        loss = self.loss_func(y_hat, y)
-        tensorboard_logs = {'train_loss': loss}
+        y_hat_disease, y_hat_gender = self.forward(x)
+        loss_disease = self.loss_func(y_hat_disease, y_disease)
+        loss_gender = self.loss_func(y_hat_gender, y_gender)
+
+        loss = loss_gender + loss_disease
+        tensorboard_logs = {'train_loss': loss, 'loss_disease': loss_disease, 'loss_gender': loss_gender}
         return {'loss': loss, 'log': tensorboard_logs}
 
     def validation_step(self, batch, batch_idx):
-        x, y = batch['image'], batch['label']
+        x = batch['image']
+        y_disease = batch['disease']
+        y_gender = batch['gender']
+
+        y_hat_disease, y_hat_gender = self.forward(x)
+        loss_disease = self.loss_func(y_hat_disease, y_disease)
+        loss_gender = self.loss_func(y_hat_gender, y_gender)
+
+        loss = loss_gender + loss_disease
         y_hat = self.forward(x)
-        return {'val_loss': self.loss_func(y_hat, y), 'y_hat': y_hat, 'y': y}
+        return {'val_loss': loss, 'y_hat_disease': y_hat_disease, 'y_hat_gender': y_hat_gender,
+                                  'y_disease': y_disease, 'y_gender': y_gender}
 
     def validation_end(self, outputs):
         avg_loss = torch.stack([x['val_loss'] for x in outputs]).mean()
 
-        y_pred = F.softmax(torch.cat([x['y_hat'] for x in outputs]), dim=-1)
-        y = torch.cat([x['y'] for x in outputs])
+        y_pred_disease = F.softmax(torch.cat([x['y_hat_disease'] for x in outputs]), dim=-1)
+        y_disease = torch.cat([x['y_disease'] for x in outputs])
 
-        fpr, tpr, threshold = metrics.roc_curve(y.cpu(), y_pred[:, 1].cpu())
-        roc_auc = metrics.auc(fpr, tpr)
+        y_pred_gender = F.softmax(torch.cat([x['y_hat_gender'] for x in outputs]), dim=-1)
+        y_gender = torch.cat([x['y_gender'] for x in outputs])
+
+        fpr_d, tpr_d, threshold_d = metrics.roc_curve(y_disease.cpu(), y_pred_disease[:, 1].cpu())
+        roc_auc_disease = metrics.auc(fpr_d, tpr_d)
+
+
+        fpr_g, tpr_g, threshold_g = metrics.roc_curve(y_gender.cpu(), y_pred_gender[:, 1].cpu())
+        roc_auc_gender = metrics.auc(fpr_g, tpr_g)
 
         tensorboard_logs = {
             'val_loss': avg_loss,
             #'fpr': fpr,
             #'tpr': tpr,
-            'auc': roc_auc
+            'auc_disease': roc_auc_disease,
+            'auc_gender': roc_auc_gender
         }
 
-        fig_rocauc = plot_rocauc(fpr, tpr, roc_auc)
-        self.logger.experiment.add_figure('ROC/AUC', fig_rocauc)
+        fig_rocauc_disease = plot_rocauc(fpr_d, tpr_d, roc_auc_disease)
+        self.logger.experiment.add_figure('ROC-AUC-Disease', fig_rocauc_disease)
+
+        fig_rocauc_gender = plot_rocauc(fpr_g, tpr_g, roc_auc_gender)
+        self.logger.experiment.add_figure('ROC-AUC-Gender', fig_rocauc_gender)
 
         return {'val_loss': avg_loss, 'log': tensorboard_logs}
 
@@ -208,12 +235,12 @@ if __name__=="__main__":
         "batch_size": 32,
         "stages": [
             {
-                "epochs": 4,
+                "epochs": 8,
                 "lr": 0.001,
                 "freeze_to": -1
             },
             {
-                "epochs": 4,
+                "epochs": 8,
                 "lr": 0.0001,
                 "freeze_to": -2
             },
